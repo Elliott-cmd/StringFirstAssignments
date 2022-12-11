@@ -1,16 +1,32 @@
+import java.math.BigInteger;
 import java.util.*;
-
 public class mathSolver {
-    int factorial(int num) {
-        int total = 1;
+    BigInteger factorial(int num) {
+        BigInteger total = new BigInteger("1");
         while (num > 0) {
-            total *= num;
+
+            total = total.multiply(new BigInteger(Integer.toString(num)));
             num--;
         }
         return total;
     }
 
-    void runner() {
+    BigInteger permutation(int n, int r){
+         BigInteger top = factorial(n);
+         BigInteger bottom = factorial(n-r);
+        BigInteger solution = top;
+        solution = solution.divide(bottom);
+        return solution;
+    }
+    BigInteger combination(int n, int r){
+         BigInteger top = factorial(n);
+         BigInteger bottom = factorial(n-r);
+        bottom = bottom.multiply(factorial(r));
+        BigInteger solution = top;
+        solution = solution.divide(bottom);
+        return solution;
+    }
+    BigInteger runner() {
         // Detects char for correct calculation
         Scanner sc = new Scanner(System.in); // System.in is a standard input stream
         System.out.print("Enter Calcultaion Opeation - ");
@@ -30,12 +46,7 @@ public class mathSolver {
             c = c.toUpperCase();
             char f = c.toCharArray()[0];
             if (f == 'Y') {
-                sc.close();
-                System.out.println("Locked Input");
-                final int top = factorial(n);
-                final int bottom = factorial(n-r);
-                final int solution = top/bottom;
-                System.out.println(solution);
+                return permutation(n, r);
             }
         }else if(b == 'C'){
             System.out.println("Starting Combination Calculation...");
@@ -49,22 +60,29 @@ public class mathSolver {
             c = c.toUpperCase();
             char f = c.toCharArray()[0];
             if (f == 'Y') {
-                sc.close();
-                System.out.println("Locked Input");
-                final int top = factorial(n);
-                final int bottom = factorial(n-r);
-                final int solution = top/bottom;
-                System.out.println(solution);
+                return combination(n, r);
             }
-        }
+        }else if(b == 'F'){
+            System.out.println("Starting Factorial Calculation...");
+            System.out.print("Enter Number - ");
+            int n = sc.nextInt();
+            System.out.println("Equation = " + n + "!");
+            System.out.print("Continue? (Y/N) ");
+            String c = sc.next();
+            c = c.toUpperCase();
+            char f = c.toCharArray()[0];
+            if (f == 'Y') {
+                return factorial(n);
+            }
         }else{
-            System.out.println("Please enter a vaild operation. Valid operation are as follows. Permutaions | Cominations");
+            System.out.println("Please enter a vaild operation. Valid operation are as follows. Permutaions | Cominations"); 
         }
+        return new BigInteger("0"); 
     }
     public static void main(String[] args) {
         while(true){
         mathSolver solver = new mathSolver();
-        solver.runner();
+        System.out.println(solver.runner());
     }}
 
 }

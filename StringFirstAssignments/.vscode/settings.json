@@ -3,5 +3,8 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
-    ]
+    ],
+    "debug.showSubSessionsInToolBar": false,
+    "workbench.statusBar.visible": true,
+    "zenMode.hideStatusBar": true
 }
