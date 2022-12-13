@@ -1,3 +1,4 @@
+package EMATH;
 import java.math.BigInteger;
 import java.util.*;
 public class mathSolver {
@@ -46,7 +47,10 @@ public class mathSolver {
             c = c.toUpperCase();
             char f = c.toCharArray()[0];
             if (f == 'Y') {
+                sc.close();
                 return permutation(n, r);
+                
+
             }
         }else if(b == 'C'){
             System.out.println("Starting Combination Calculation...");
@@ -60,6 +64,8 @@ public class mathSolver {
             c = c.toUpperCase();
             char f = c.toCharArray()[0];
             if (f == 'Y') {
+                sc.close();
+
                 return combination(n, r);
             }
         }else if(b == 'F'){
@@ -72,17 +78,23 @@ public class mathSolver {
             c = c.toUpperCase();
             char f = c.toCharArray()[0];
             if (f == 'Y') {
+                sc.close();
                 return factorial(n);
             }
         }else{
+            sc.close();
+
             System.out.println("Please enter a vaild operation. Valid operation are as follows. Permutaions | Cominations"); 
         }
+        sc.close();
+
         return new BigInteger("0"); 
     }
+
     public static void main(String[] args) {
-        while(true){
         mathSolver solver = new mathSolver();
         System.out.println(solver.runner());
-    }}
+        
+    }
 
 }
